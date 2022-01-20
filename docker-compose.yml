@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  php:
+    build:
+      context: .
+    image: phpdocker
+    container_name: php
+    working_dir: /var/www/
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./:/var/www
+    command: php -S 0.0.0.0:8081 -t public/
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql:/var/lib/mysql/
+    environment:
+      MYSQL_DATABASE: 'personal-finance'
+      MYSQL_USER: 'william'
+      MYSQL_PASSWORD: '12345678'
+      MYSQL_ROOT_PASSWORD: '123456'
+volumes:
+  mysql:
