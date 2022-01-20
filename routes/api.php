@@ -1,6 +1,5 @@
 <?php
 
-return [
-    '/listar-receitas' => \FinanceApp\Controller\IncomeController::class,
-    '/listar-despesas' => \FinanceApp\Controller\ExpenseController::class,
-];
+$router->get('/', function() {
+    echo "<h1>Página inicial</h1>";
+});
