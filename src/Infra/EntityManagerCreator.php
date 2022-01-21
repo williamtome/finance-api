@@ -10,14 +10,16 @@ class EntityManagerCreator
 {
     public function getEntityManager(): EntityManagerInterface
     {
-        $paths = [__DIR__ . '/../Models'];
-        $isDevMode = false;
-        $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+        $rootDir = __DIR__ . '/../..';
+        $isDevMode = true;
 
-        $dbParams = [
-            'url' => 'mysql://william:12345678@mysql/personal-finance',
+        $config = Setup::createAnnotationMetadataConfiguration([$rootDir . '/src/Models'], $isDevMode);
+
+        $connectionParams = [
+            'driver' => 'pdo_sqlite',
+            'path' => $rootDir . '/banco.sqlite'
         ];
 
-        return EntityManager::create($dbParams, $config);
+        return EntityManager::create($connectionParams, $config);
     }
 }
