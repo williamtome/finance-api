@@ -1,7 +1,11 @@
 <?php
 
+use FinanceApp\Controllers\ExpenseController;
+use FinanceApp\Controllers\CreateIncomeController;
+use FinanceApp\Controllers\ListIncomeController;
+
 return [
-    '/' => \FinanceApp\Controllers\IncomeController::class,
-    '/listar-receitas' => \FinanceApp\Controllers\IncomeController::class,
-    '/listar-despesas' => \FinanceApp\Controllers\ExpenseController::class,
+    '/listar-receitas' => ListIncomeController::class,
+    '/criar-receita' => CreateIncomeController::class,
+    '/listar-despesas' => ExpenseController::class,
 ];
