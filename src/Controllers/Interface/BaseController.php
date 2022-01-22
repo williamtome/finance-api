@@ -1,6 +1,6 @@
 <?php
 
-namespace FinanceApp\Controller;
+namespace FinanceApp\Controllers\Interface;
 
 interface BaseController
 {
