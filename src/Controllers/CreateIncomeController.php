@@ -18,10 +18,28 @@ class CreateIncomeController implements BaseController
 
     public function processRequest()
     {
+        $description = filter_input(
+            INPUT_POST,
+            'description',
+            FILTER_SANITIZE_STRING
+        );
+
+        $amount = filter_input(
+            INPUT_POST,
+            'amount',
+            FILTER_VALIDATE_FLOAT
+        );
+
+        $date = filter_input(
+            INPUT_POST,
+            'date',
+            FILTER_SANITIZE_STRING
+        );
+
         $income = new Income();
-        $income->setDescription($_POST['description']);
-        $income->setAmount($_POST['amount']);
-        $income->setDate($_POST['date']);
+        $income->setDescription($description);
+        $income->setAmount($amount);
+        $income->setDate($date);
         $this->entityManager->persist($income);
         $this->entityManager->flush();
     }
