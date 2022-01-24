@@ -20,13 +20,11 @@ class ListIncomeController implements BaseController
     public function processRequest()
     {
         $incomes = $this->incomeRepository->findAll();
-        $this->formatResult($incomes);
+        print_r($this->serialize($incomes));
     }
 
-    protected function formatResult(array $result)
+    protected function serialize($result)
     {
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
+        return json_encode($result);
     }
 }
