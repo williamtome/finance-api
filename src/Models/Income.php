@@ -48,18 +48,24 @@ class Income implements \JsonSerializable
         ];
     }
 
-    public function setDescription(string $description)
+    public function setDescription(string|null $description)
     {
-        $this->description = $description;
+        if (!is_null($description)) {
+            $this->description = $description;
+        }
     }
 
-    public function setAmount(float $amount)
+    public function setAmount(float|null $amount)
     {
-        $this->amount = $amount;
+        if (!is_null($amount)) {
+            $this->amount = $amount;
+        }
     }
 
-    public function setDate(string $date)
+    public function setDate(string|null $date)
     {
-        $this->date = $date;
+        if (!is_null($date)) {
+            $this->date = $date;
+        }
     }
 }
