@@ -2,8 +2,13 @@
 
 namespace FinanceApp\Models;
 
-use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, Table};
-use DateTimeInterface;
+use Doctrine\ORM\Mapping\{
+    Column,
+    Entity,
+    GeneratedValue,
+    Id,
+    Table
+};
 
 /**
  * @Entity
