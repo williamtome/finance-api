@@ -4,7 +4,7 @@ use FinanceApp\Controllers\Interface\BaseController;
 
 require __DIR__ . '/../vendor/autoload.php';
 //var_dump($_SERVER);exit();
-$path = $_SERVER['REQUEST_URI'];
+$path = $_SERVER['PATH_INFO'];
 $routes = require __DIR__ . '/../routes/api.php';
 
 if (!array_key_exists($path, $routes)) {
