@@ -9,7 +9,7 @@ use DateTimeInterface;
  * @Entity
  * @Table(name="income")
  */
-class Income
+class Income implements \JsonSerializable
 {
     /**
      * @Id
@@ -33,44 +33,14 @@ class Income
      */
     private string $date;
 
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description): void
+    public function jsonSerialize(): array
     {
-        $this->description = $description;
-    }
-
-    /**
-     * @param float $amount
-     */
-    public function setAmount(float $amount): void
-    {
-        $this->amount = $amount;
-    }
-
-    /**
-     * @param string $date
-     */
-    public function setDate(string $date): void
-    {
-        $this->date = $date;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->id;
+        return [
+            'id' => (int) $this->id,
+            'description' => $this->description,
+            'amount' => $this->amount,
+            'date' => $this->date,
+        ];
     }
 
     /**
