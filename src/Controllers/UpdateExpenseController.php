@@ -57,6 +57,5 @@ class UpdateExpenseController implements BaseController
         $expense->setDate($date);
         $this->entityManager->persist($expense);
         $this->entityManager->flush();
-
     }
 }

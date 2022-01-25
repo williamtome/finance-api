@@ -57,6 +57,5 @@ class UpdateIncomeController implements BaseController
         $income->setDate($date);
         $this->entityManager->persist($income);
         $this->entityManager->flush();
-
     }
 }
