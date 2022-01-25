@@ -35,11 +35,11 @@ class ListIncomeController implements BaseController
         }
 
         $incomes = $this->incomeRepository->findAll();
-        print_r($this->serialize($incomes));
+        $this->serialize($incomes);
     }
 
     protected function serialize($result)
     {
-        return json_encode($result);
+        print_r(json_encode($result));
     }
 }
