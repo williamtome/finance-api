@@ -19,6 +19,21 @@ class ListIncomeController implements BaseController
 
     public function processRequest()
     {
+        if (isset($_GET['descricao'])) {
+            $description = filter_input(
+                INPUT_GET,
+                'descricao',
+                FILTER_SANITIZE_STRING
+            );
+
+            $income = $this->incomeRepository->findOneBy([
+                'description' => $description
+            ]);
+
+            $this->serialize($income);
+            return;
+        }
+
         $incomes = $this->incomeRepository->findAll();
         print_r($this->serialize($incomes));
     }
