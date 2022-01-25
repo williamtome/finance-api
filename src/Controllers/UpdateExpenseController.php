@@ -8,17 +8,17 @@ use Doctrine\Persistence\ObjectRepository;
 use Exception;
 use FinanceApp\Controllers\Interface\BaseController;
 use FinanceApp\Infra\EntityManagerCreator;
-use FinanceApp\Models\Income;
+use FinanceApp\Models\Expense;
 
-class UpdateIncomeController implements BaseController
+class UpdateExpenseController implements BaseController
 {
     private EntityManagerInterface $entityManager;
-    private ObjectRepository|EntityRepository $incomeRepository;
+    private ObjectRepository|EntityRepository $expenseRepository;
 
     public function __construct()
     {
         $this->entityManager = (new EntityManagerCreator())->getEntityManager();
-        $this->incomeRepository = $this->entityManager->getRepository(Income::class);
+        $this->expenseRepository = $this->entityManager->getRepository(Expense::class);
     }
 
     public function processRequest()
@@ -51,11 +51,11 @@ class UpdateIncomeController implements BaseController
             throw new Exception('ID está vazio ou null!');
         }
 
-        $income = $this->incomeRepository->find($id);
-        $income->setDescription($description);
-        $income->setAmount($amount);
-        $income->setDate($date);
-        $this->entityManager->persist($income);
+        $expense = $this->expenseRepository->find($id);
+        $expense->setDescription($description);
+        $expense->setAmount($amount);
+        $expense->setDate($date);
+        $this->entityManager->persist($expense);
         $this->entityManager->flush();
 
     }
