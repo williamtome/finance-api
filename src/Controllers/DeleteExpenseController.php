@@ -33,10 +33,10 @@ class DeleteExpenseController implements BaseController
             throw new Exception('ID está vazio ou null!');
         }
 
-        $income = $this->entityManager
+        $expense = $this->entityManager
             ->getReference(Expense::class, $id);
 
-        $this->entityManager->remove($income);
+        $this->entityManager->remove($expense);
         $this->entityManager->flush();
     }
 }
