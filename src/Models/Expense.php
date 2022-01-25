@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, Table};
  * @Entity
  * @Table(name="expense")
  */
-class Expense
+class Expense implements \JsonSerializable
 {
     /**
      * @Id
@@ -31,4 +31,35 @@ class Expense
      * @Column(type="string")
      */
     private string $date;
+
+    public function setDescription(string|null $description): void
+    {
+        if (!is_null($description)) {
+            $this->description = $description;
+        }
+    }
+
+    public function setAmount(float|null $amount): void
+    {
+        if (!is_null($amount)) {
+            $this->amount = $amount;
+        }
+    }
+
+    public function setDate(string|null $date): void
+    {
+        if (!is_null($date)) {
+            $this->date = $date;
+        }
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => (int) $this->id,
+            'description' => $this->description,
+            'amount' => $this->amount,
+            'date' => $this->date,
+        ];
+    }
 }
