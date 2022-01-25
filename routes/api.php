@@ -1,5 +1,6 @@
 <?php
 
+use FinanceApp\Controllers\CreateExpenseController;
 use FinanceApp\Controllers\DeleteIncomeController;
 use FinanceApp\Controllers\ListExpenseController;
 use FinanceApp\Controllers\CreateIncomeController;
@@ -14,4 +15,5 @@ return [
     '/atualizar-receita' => UpdateIncomeController::class,
     '/excluir-receita' => DeleteIncomeController::class,
     '/listar-despesas' => ListExpenseController::class,
+    '/criar-despesa' => CreateExpenseController::class,
 ];
