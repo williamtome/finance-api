@@ -2,9 +2,10 @@
 
 use FinanceApp\Controllers\{
     CreateExpenseController,
+    CreateIncomeController,
+    DeleteExpenseController,
     DeleteIncomeController,
     ListExpenseController,
-    CreateIncomeController,
     ListIncomeController,
     ShowExpenseController,
     ShowIncomeController,
@@ -22,4 +23,5 @@ return [
     '/criar-despesa' => CreateExpenseController::class,
     '/visualizar-despesa' => ShowExpenseController::class,
     '/atualizar-despesa' => UpdateExpenseController::class,
+    '/excluir-despesa' => DeleteExpenseController::class,
 ];
