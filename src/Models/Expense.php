@@ -2,8 +2,7 @@
 
 namespace FinanceApp\Models;
 
-use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, Table};
-
+use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, Table, ManyToOne};
 /**
  * @Entity
  * @Table(name="expense")
@@ -31,6 +30,11 @@ class Expense implements \JsonSerializable
      * @Column(type="string")
      */
     private string $date;
+
+    /**
+     * @ManyToOne(targetEntity="Category", inversedBy="expense")
+     */
+    private Category $category;
 
     public function setDescription(string|null $description): void
     {
