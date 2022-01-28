@@ -6,8 +6,12 @@ use Doctrine\ORM\EntityRepository;
 use FinanceApp\Controllers\Interface\BaseController;
 use FinanceApp\Infra\EntityManagerCreator;
 use FinanceApp\Models\Income;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class ListIncomeController implements BaseController
+class ListIncomeController implements RequestHandlerInterface
 {
     private EntityRepository $incomeRepository;
 
@@ -17,9 +21,9 @@ class ListIncomeController implements BaseController
         $this->incomeRepository = $entityManager->getRepository(Income::class);
     }
 
-    public function processRequest()
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if (isset($_GET['descricao'])) {
+        if (isset($request->getQueryParams()['descricao'])) {
             $description = filter_input(
                 INPUT_GET,
                 'descricao',
@@ -30,16 +34,15 @@ class ListIncomeController implements BaseController
                 'description' => $description
             ]);
 
-            $this->serialize($income);
-            return;
+            return new Response(200, [], $this->serialize($income));
         }
 
         $incomes = $this->incomeRepository->findAll();
-        $this->serialize($incomes);
+        return new Response(200, [], $this->serialize($incomes));
     }
 
-    protected function serialize($result)
+    protected function serialize($result): bool|string
     {
-        print_r(json_encode($result));
+        return json_encode($result);
     }
 }
